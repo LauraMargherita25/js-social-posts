@@ -112,5 +112,6 @@ const btnLike = document.querySelector(".likes__cta");
 btnLike.addEventListener('click', addLike);
 
 function addLike() {
-    btnLike.innerHTML.style.color = "turquase";
+    // document.querySelector(".like-button").style.color = "#0CD977";
+    document.querySelector(".like-button").classList.toggle(".like-button--liked");
 }
