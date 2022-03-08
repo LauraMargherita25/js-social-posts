@@ -57,11 +57,11 @@ const posts = [
 ];
 
 
-// devo appendere il singolo post
+// Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
 
 const eleContainer = document.getElementById("container");
 
-for (let i = 0; i < posts.length; i++) {
+function renderPost(objPosts) {
     
     const elePost = document.createElement("div");
     elePost.classList.add("post");
@@ -69,17 +69,17 @@ for (let i = 0; i < posts.length; i++) {
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${posts[i].author.image}" alt="Phil Mangione">                    
+                    <img class="profile-pic" src="${objPosts.author.image}" alt="${objPosts.author.name}">                    
                 </div>
                 <div class="post-meta__data">
-                    <div class="post-meta__author">${posts[i].author.name}</div>
+                    <div class="post-meta__author">${objPosts.author.name}</div>
                     <div class="post-meta__time">4 mesi fa</div>
                 </div>                    
             </div>
         </div>
-            <div class="post__text">${posts[i].content}</div>
+            <div class="post__text">${objPosts.content}</div>
             <div class="post__image">
-            <img src="${posts[i].media}" alt="">
+            <img src="${objPosts.media}" alt="">
             </div>
             <div class="post__footer">
             <div class="likes js-likes">
@@ -90,11 +90,27 @@ for (let i = 0; i < posts.length; i++) {
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${posts[i].likes}</b> persone
+                    Piace a <b id="like-counter-1" class="js-likes-counter">${objPosts.likes}</b> persone
                 </div>
             </div> 
         </div> 
     `;
     eleContainer.append(elePost);
+}
+
+for (let i = 0; i < posts.length; i++) {
     
+    renderPost(posts[i])
+}
+
+
+// Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+
+// cambio colore al bottone dei like
+const btnLike = document.querySelector(".likes__cta");
+
+btnLike.addEventListener('click', addLike);
+
+function addLike() {
+    btnLike.innerHTML.style.color = "turquase";
 }
